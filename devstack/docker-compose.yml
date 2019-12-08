@@ -1,0 +1,19 @@
+version: "3"
+services:
+#  Create a service named db.
+  db:
+#   Use the Docker Image postgres. This will pull the newest release.
+    image: "postgres"
+#   Setup the username, password, and database name. You can changes these values.
+    environment:
+      - POSTGRES_USER=fda_owner
+      - POSTGRES_PASSWORD=fda_owner
+      - POSTGRES_DB=fda_db
+    ports:
+      - "5432:5432"
+#   Set a volume some that database is not lost after shutting down the container.
+#   I used the name postgres-data but you can changed it to something else.
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+    pgdata:
